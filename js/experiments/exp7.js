@@ -6,7 +6,12 @@
 (function (Lab) {
   'use strict';
   var T = window.THREE, U = Lab.util, UI = Lab.ui, L = Lab.logic.exp7, Mo = Lab.models;
-  var CT = Lab.content.exp7, MD = CT.md, APP = CT.app;
+  var CT = Lab.content.exp7, MD = merge(CT.md, CT.user), APP = CT.app;     // `user` = the scenario file sentences (2026-11-15), merged over the md
+  function merge(a, b) {                              // b over a; nested plain objects merge, arrays and strings replace
+    var o = {}, k; for (k in a) o[k] = a[k]; if (!b) return o;
+    for (k in b) o[k] = (b[k] && typeof b[k] === 'object' && !Array.isArray(b[k]) && a[k]) ? merge(a[k], b[k]) : b[k];
+    return o;
+  }
   var PZ = -0.4;                                                     // the plant stands this far behind the middle of the table
   var CARDS = ['male', 'female', 'lens', 'leaf', 'ruler'];
   var SHOTS = {
@@ -32,7 +37,7 @@
       perch: function (u) { return hp.branchAt(u).add(V(0, 0.16, PZ)); },
       hang: function (u) { return hp.branchAt(u).add(V(0, -0.03, PZ)); },
       leafTop: function (s, w) { return V(1.0 + s * 2.5, 1.75 - 0.225 * s * s + 0.01, PZ + 0.16 + w); },
-      egg: V(2.55, 1.655, PZ + 0.3),
+      egg: V(2.55, 1.655, PZ + 0.3), flower: hp.flowerAt.clone().add(V(0, 0, PZ)),
       from: V(-4.4, 4.7, 1.4), away: V(-4.6, 5.4, 2.0)
     };
 

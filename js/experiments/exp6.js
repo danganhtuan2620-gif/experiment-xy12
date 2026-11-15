@@ -1,13 +1,18 @@
 /* Experiment 6 – "Tìm hiểu sự hình thành cây con từ hạt, rễ, thân và lá của thực vật".
-   This file: the table with four fixed places, the tool tray (four samples, four pots, soil, watering can, magnifier), the side panel, the drops
+   This file: the table with four fixed places, the tool tray (four samples, four pots, watering can, magnifier), the side panel, the drops
    (pots, samples, water, magnifier) and the cameras. exp6-lapse.js (time, zooming into a pot, classification, growing up, the end) adds the rest
    through Lab.exp6mods and shares the object `X`. Index 0..3 = bean, sweet potato, potato, kalanchoe (pot i takes sample i). */
 (function (Lab) {
   'use strict';
   var T = window.THREE, U = Lab.util, UI = Lab.ui, L = Lab.logic.exp6, Mo = Lab.models;
-  var CT = Lab.content.exp6, MD = CT.md, APP = CT.app;
+  var CT = Lab.content.exp6, MD = merge(CT.md, CT.user), APP = CT.app;     // `user` = the scenario file sentences (2026-11-15), merged over the md
+  function merge(a, b) {                              // b over a; nested plain objects merge, arrays and strings replace
+    var o = {}, k; for (k in a) o[k] = a[k]; if (!b) return o;
+    for (k in b) o[k] = (b[k] && typeof b[k] === 'object' && !Array.isArray(b[k]) && a[k]) ? merge(a[k], b[k]) : b[k];
+    return o;
+  }
   var PX = [-3.3, -1.1, 1.1, 3.3], PZ = 0.3;
-  var CARDS = ['s0', 's1', 's2', 's3', 'p0', 'p1', 'p2', 'p3', 'soil', 'can', 'lens'];
+  var CARDS = ['s0', 's1', 's2', 's3', 'p0', 'p1', 'p2', 'p3', 'can', 'lens'];     // no soil since 2026-11-15 (scenario file, Tab 1)
   var SHOTS = {
     table: { cx: 0, cy: 1.3, cz: PZ, w: 9.4, h: 4.4, pitch: 0.4, fov: 34 },
     pot: function (i) { return { cx: PX[i], cy: 1.5, cz: PZ, w: 3.4, h: 2.6, pitch: 0.16, fov: 34 }; }
@@ -81,7 +86,7 @@
       var stack = el('div', { class: 'panel-stack' }), key = L.promptKey(state);
       if (state.complete && X.finale) X.finale.render(stack);
       else {
-        if (key && !X.busy) stack.appendChild(el('div', { class: 'panel-card task-card' }, el('p', { class: 'task-text', text: APP[key] }), key === 'startTask' ? button(MD.start, 'btn-orange', function () { X.lapse.start(); }) : null,
+        if (key && !X.busy) stack.appendChild(el('div', { class: 'panel-card task-card' }, el('p', { class: 'task-text', text: APP[key] }), L.canStart(state) ? button(MD.start, 'btn-orange', function () { X.lapse.start(); }) : null,
           key === 'growTask' ? button(APP.keepGoing, 'btn-orange', function () { X.lapse.grow(); }) : null));
         if (state.started) stack.appendChild(X.timeCard());
         if (X.note && state.started) stack.appendChild(el('div', { class: 'panel-card task-card' }, el('p', { class: 'task-text', text: X.note })));
@@ -178,7 +183,7 @@
       Lab.audio.play('water');
       Lab.fx.pour(scene, { from: worldOf(can.userData.tip), to: soil, color: 0x59bff2, size: 0.055, count: 46, duration: 1.9, spread: 0.12, opacity: 0.85, flight: 0.5 });
       Lab.tween.wait(0.7).promise.then(function () { pot.setSoil('moist', true); });
-      X.toast(MD.right.water, { type: 'ok', ms: 4200 });
+      X.toast(MD.right.water.replace('[số]', i + 1), { type: 'ok', ms: 4200 });
       await Lab.tween.wait(2.0).promise;
       await Lab.tween.to(can.rotation, { z: 0 }, 0.35).promise;
       await Lab.tween.to(can.position, { x: can.position.x + 3.4, y: can.position.y + 3 }, 0.7, { ease: 'inCubic' }).promise;
@@ -198,9 +203,10 @@
 
     hintTimer = setInterval(function () {
       if (X.busy || performance.now() - X.lastAction < 10000 || state.complete) return;
-      var i2; if (!L.allPots(state)) { for (i2 = 0; i2 < 4; i2++) if (!state.pots[i2]) { UI.setCard('p' + i2, { pulse: true }); return; } }
-      else if (!L.allSamples(state)) { for (i2 = 0; i2 < 4; i2++) if (!state.samples[i2]) { UI.setCard('s' + i2, { pulse: true }); return; } }
-      else if (!L.allWatered(state)) UI.setCard('can', { pulse: true });
+      var key = L.promptKey(state), i2;
+      if (key === 'potsTask') UI.setCard('p0', { pulse: true });
+      else if (key === 'sampleTask') { for (i2 = 0; i2 < 4; i2++) if (state.pots[i2] && !state.samples[i2]) { UI.setCard('s' + i2, { pulse: true }); return; } }
+      else if (key === 'waterTask') UI.setCard('can', { pulse: true });
     }, 1000);
 
     X.refresh(); Lab.loop.wake();

@@ -3,7 +3,8 @@
      setBites(k), k = 0 whole … 1 badly eaten (the edge is cut away by an alpha map).
    • Mo.ruler(): natural length 1 along x, so a ruler put inside a scaled caterpillar group is as long as the caterpillar.
    • Mo.hostPlant(): a pot with a stem, a perch branch and four big leaves. leafA (the egg and feeding leaf) is at x 1 … 3.5, y about 1.75. It stands at the origin;
-     the experiment moves the whole group. api.branchAt(u) = a point on the perch branch (u 0 … 1, local). */
+     the experiment moves the whole group. api.branchAt(u) = a point on the perch branch (u 0 … 1, local).
+     Since 2026-11-15 the plant also has one flower on a side stem (the new butterfly drinks nectar there, scenario file 2.10); api.flowerAt = its centre (local). */
 (function (Lab) {
   'use strict';
   var T = window.THREE, M = Lab.mat, P = Lab.prim, U = Lab.util, Mo = Lab.models;
@@ -69,6 +70,14 @@
     place(Mo.leafPiece(2.1, { seed: 4, color: 0x63b04a }), V(-0.95, 1.55, 0.12), Math.PI, 0);
     place(Mo.leafPiece(1.7, { seed: 6, color: 0x55a041 }), V(0.1, 3.6, -0.05), 2.5, 0.55);
     place(Mo.leafPiece(1.4, { seed: 8, color: 0x63b04a }), V(1.25, 3.26, 0.0), Math.PI / 2 + 0.2, 0.3);
-    return { group: g, leafA: leafA, branchAt: function (u) { return perch.userData.curve.getPoint(cl(u)); } };
+    /* the flower: a side stem to the left, five pink petals round a yellow centre, facing up and a little to the front */
+    var FC = V(-1.35, 2.78, 0.3);
+    g.add(branch([V(-0.01, 2.25, 0), V(-0.7, 2.5, 0.12), V(-1.2, 2.62, 0.25), FC.clone().add(V(0, -0.06, 0))], 0.04, 0.025, stemMat, 10));
+    var fl = new T.Group(); fl.position.copy(FC); fl.rotation.x = 0.45; fl.scale.setScalar(1.5); g.add(fl);
+    var petalMat = M.std(0xf27fb8, { roughness: 0.5, side: T.DoubleSide }), heart = new T.Mesh(P.ellipsoid(0.11, 0.07, 0.11, 14), M.std(0xffd23a, { roughness: 0.45, emissive: 0xffb000, emissiveIntensity: 0.25 }));
+    heart.position.y = 0.04; fl.add(heart);
+    for (var k = 0; k < 5; k++) { var pa = new T.Group(), pe = new T.Mesh(P.ellipsoid(0.22, 0.03, 0.13, 12), petalMat); pe.position.x = 0.2; pe.rotation.z = 0.25; pa.rotation.y = k * Math.PI * 2 / 5; pa.add(pe); fl.add(pa); }
+    fl.traverse(function (o) { o.userData.noPick = true; if (o.isMesh) o.castShadow = true; });
+    return { group: g, leafA: leafA, flowerAt: FC.clone(), branchAt: function (u) { return perch.userData.curve.getPoint(cl(u)); } };
   };
 })(window.Lab);

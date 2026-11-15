@@ -43,6 +43,53 @@ A good answer lists all five rules (including the 90% usage rule and Vietnamese 
 
 ## Log (newest first)
 
+### 2026-11-15 (later), Claude: re-check asked "bằng chrome mcp và claude" (waiting on the user)
+
+- Node tests: 135, all pass. Claude read the whole diff of `js/experiments` and `js/models` again: no new bug found.
+- Claude in Chrome (the extension) was not connected after 3 tries. The user chose "Dùng cách khác".
+- Headless Chrome over `file://` (script in the scratchpad, `autocheck.js`, checks the page text after each shot scenario): exp6 `two14`, `twoFinale`, `finale`, exp7 `quick`, exp8 `embryo`, `finale` pass. exp7 `finale` reached HOÀN THÀNH THÍ NGHIỆM; my check also asked for the "ĐÃ QUAN SÁT TRỨNG" chip, which the final screen never shows (the app is right, the check was wrong).
+- Real Chrome screenshots (headless `--screenshot`): exp6 two pots at the end, exp7 cut (see-through pupa, small eyes: the fix holds), exp8 slider. All look right.
+- Scripted checks in the built-in pane: Exp 6 one pot, 21 checks (messages, lock after start, only HẠT card, back button text, results, reset = fresh start); one check read the water message too early, re-checked with a wait: "Đã cung cấp nước cho Chậu 4." Exp 7 from the eggs, 16 checks (no magnifier needed, texts, dots optional, eye size, nectar, sorting, complete). Exp 8 slider, 9 checks (stops at last open mark, drag to a mark, drag back, mark click, reset). No console errors. All pass.
+
+### 2026-11-15 (late), Claude: the checks left over from the entry below (same branch, not committed)
+
+- `file://`: headless Chrome (`--headless=new --virtual-time-budget=... --dump-dom`, own `--user-data-dir` in the scratchpad) works on this machine; `--screenshot` works too. Over `file://`: exp6 `twoFinale` and `finale`, exp7 `quick`, exp8 `embryo` all finish, the 3D fallback stays hidden, panels show the expected texts.
+- Phone: upright phones get the site's "Hãy xoay ngang màn hình" screen (as before). Sideways 812x375: Exp 6 classification and Exp 8 slider usable; the pot name tags overlap a little (also before this work).
+- Hand play with real mouse drags (1280x720): Exp 6 one pot from start to results, wrong waterings and a sample without its pot give the new messages, LÀM LẠI dialog works. Exp 7 from the eggs: hatch without the magnifier, leaf feeding, cut, one dot, emergence, nectar message. Exp 8 slider was dragged by mouse earlier.
+- Sound: only checked that the names used (`ok`, `wrong`) exist in `js/core/audio.js`; nobody listened.
+- Bug found and fixed in `js/models/butterfly.js` (`Mo.pupa().highlight`): it set each inner part's scale to 1 or 1.15, so the eye balls (unit spheres scaled 0.05) grew 20 times into a big dark-blue ball that hid the see-through pupa after any dot was clicked. Present since Exp 7 was built. Now each part grows from its own size. Checked in the pane: the four parts show inside the clear case.
+- Wording: Exp 6 `classAllSome` is now "Em đã phân loại đúng tất cả." (the old one said "các cây con" even for one pot).
+- Tests: 135, all pass.
+
+### 2026-11-15 (night), Claude: Experiments 6, 7 and 8 changed after the scenario file (branch `test/kich-ban-3-thi-nghiem`, not committed)
+
+- The user asked to apply the file's changes to Experiments 6 and 7, and for Experiment 8 only the draggable time bar; the pig facts (eyes, day marks) stay as they are for now.
+- Exp 6: 1 to 4 pots. `js/logic/exp6.js` rewritten (per pot `ready`, `state.active` fixed at BẮT ĐẦU, `cards`, table locked after start); `js/experiments/exp6.js` and `exp6-lapse.js` grow only the active pots, show only their cards, results list only them; no soil card; `user` texts in `js/content/exp6.vi.js`. Our choices where the file was silent (the user did not answer): table locked after BẮT ĐẦU, only the cards of the used pots. Progress bar clicks ("tua theo giai đoạn") not done.
+- Exp 7: magnifier optional (`canHatch`, `canCutaway`), the four dots optional, new `observeCutaway`; the 3 texts of the file in `user`; a pink flower on `Mo.hostPlant` (`flowerAt`) and the new butterfly drinks nectar there before the sorting. The magnifier stays in the tray.
+- Exp 8: the slider already existed (my feasibility report was wrong; corrected in it). Fixed the slider: past the last open mark it now stops there instead of jumping back and leaving the picture half-way (`js/experiments/exp8.js`).
+- Also: `tools/dev-server.py` takes a `PORT` setting (another session held 4173). New shot scenarios: exp6 `two`, `two14`, `twoFinale`; exp7 `quick`. `SPEC-NOTES.md` has a new table for these changes and the corrected Exp 7 progress-bar note (B1). `HUONG-DAN.txt` updated for 6, 7, 8 and the `user` text group.
+- Tests: `node --test "tests/*.test.js"`: 135 tests, all pass. Browser (dev server on port 4174, 1280x720, scripted): Exp 6 `two14` (pots 1 and 4 grow, pot 2 empty, cards HẠT and LÁ), `twoFinale` (results list 2 pots), `finale` (4 pots); Exp 7 `quick` (no magnifier, no dots, butterfly on the flower, sorting opens) and `finale` (old path with magnifier and dots); Exp 8 `embryo` slider with real mouse drags and scripted drags. Two resets give the same snapshot in 6, 7 and 8. No console errors.
+- Not tested: `file://`, phone sizes, sound, a full hand playthrough.
+- Open questions for the user: are the two choices for Exp 6 fine? Commit and merge?
+
+### 2026-11-15 (evening), Claude: feasibility report for 3 experiments (branch `test/kich-ban-3-thi-nghiem`, not committed)
+
+- The user asked for a new branch and a feasibility check (no code changes) of the 3 experiments in the scenario file. Branch `test/kich-ban-3-thi-nghiem` was made from `test/kich-ban-exp7` (same commit as `main`, `3b85fa1`); the uncommitted files of the entry below came along.
+- The new download `...(1).docx` has the same text as the earlier one (Exp 7 only). The Google Doc (3 tabs) was read again: edited 19:13 today; Tab 1 (Exp 6) now answers two of the three earlier questions (classify only the planted pots; conclusion fits the pots done). Tabs 2 and 3 unchanged.
+- Report: `BAO-CAO-KHA-THI-3-THI-NGHIEM.md`. Exp 6 with 1–4 pots is feasible and touches only Exp 6 files (logic, tests, experiment, texts in a `user` group, docs); 2 open questions (adding pots after BẮT ĐẦU; showing cards of unplanted pots), with recommendations. Exp 8: keep the site on the cat-copied facts. Exp 7: all K1–K7 feasible.
+- Tests: `node --test "tests/*.test.js"`: 129 tests, all pass. Nothing in the app changed, so no browser check.
+- Open questions for the user: the 2 Exp 6 questions; which Exp 7/8 points to apply.
+
+### 2026-11-15, Claude: checked Experiment 7 against the user's Word scenario (branch `test/kich-ban-exp7`, not committed)
+
+- The user asked for a branch to check the scenarios in `D:\Download\# Kịch bản thí nghiệm chi tiết_ Hình thành cây con từ hạt, rễ, thân và lá (hỗ trợ 1-4 chậu).docx`. The file name says Experiment 6, but the content is the butterfly life cycle (Experiment 7), so Experiment 7 was checked.
+- New: `tests/kich-ban-exp7.test.js` (13 tests, one per section of the Word file, logic only) and `KIEM-TRA-KICH-BAN-EXP7.md` (the report in Vietnamese). No app code changed.
+- Finding B1: `stepStates` lights the last progress step BƯỚM TRƯỞNG THÀNH as soon as the adult emerges; `SPEC-NOTES.md` (Exp 7, 11003–11012 row) says it lights when the four cards are right. The Word file agrees with the code. Suggested fix: the note, not the code. Not done yet.
+- Differences Word vs site (K1–K7 in the report): the Word tray has no magnifier and says the magnifier never blocks progress (the site requires it before hatching and before the 3D cut); two messages differ (2.8, 2.9); the site adds the four dots in the pupa; no nectar scene; the wrong-drop warning names the male or female.
+- Tests: `node --test "tests/*.test.js"`: 129 tests, all pass. Browser (dev server, 800x600): scenario `finale` reaches HOÀN THÀNH THÍ NGHIỆM with no console errors; two resets give the same snapshot and the bar back at step 1. Not tested: `file://`, hand dragging, phone sizes, sound.
+- Open questions for the user: follow the Word file on K1–K7 or keep the md? Is this Word file meant for Experiment 6?
+- Later the same day: the source Google Doc (shared with the user, read through the Drive connector) has 3 tabs: Tab 1 = Exp 6, Tab 2 = Exp 8 (pig), Tab 3 = Exp 7 (the downloaded .docx held only Tab 3). The user asked whether the changes are valid. Report: `DANH-GIA-THAY-DOI-THEO-FILE.md`. Main points: Tab 2 copies cat facts (newborn eyes closed, embryo to day 45, fetus 45/60) that are wrong for pigs, so keep the site; Tab 2 also contradicts itself about the magnifier. Tab 1 asks for 1–4 pots (the md needs all 4) and leaves 3 rules undefined. Small text changes listed as ready to apply. Nothing in the app changed; pig facts were not checked against a source this time.
+
 ### 2026-11-10 (later), Claude: Experiment 8 changed from a cat to a pig (merged into `main`, PR #2)
 
 - The user wrote "kiểm tra ở thí nghiệm số 8: con mèo đổi thành con heo" and, asked with a screenshot, chose "Đổi sang con heo" (change the animal), not "the cat looks like a pig".
