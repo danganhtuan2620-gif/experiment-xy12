@@ -43,6 +43,12 @@ A good answer lists all five rules (including the 90% usage rule and Vietnamese 
 
 ## Log (newest first)
 
+### 2026-11-15 (end), Claude: backup of `main`, PR #3 merged
+
+- At the user's request ("tạo 1 nhánh backup cho master hiện tại, backup số ngày nay", the repo has no `master`, so `main`): branch `backup/main-2026-11-15` = old `main` `3b85fa1`, pushed to `origin`, no upstream (it never follows `main`).
+- Then PR haccoco99999/experiment-xy12#3 merged into `main` with a merge commit (`d8a67e1`). Branch `test/kich-ban-3-thi-nghiem` kept. Local `main` pulled; tests on `main`: 135, all pass. GitHub Pages started building from `d8a67e1`; the live site was not opened afterwards.
+- To go back to the old `main`, use `backup/main-2026-11-15` (ask the user first; it would need a force-push or a revert).
+
 ### 2026-11-15 (end), Claude: commit and PR #3
 
 - At the user's request: commit `fd612a7` "feat(exp6,exp7,exp8): làm theo file kịch bản 3 thí nghiệm" on `test/kich-ban-3-thi-nghiem` (all files of the entries below, added by name, including the three Vietnamese reports and `tests/kich-ban-exp7.test.js`). Pushed; PR haccoco99999/experiment-xy12#3 into `main` is open, not merged. The repo has no CI checks.
