@@ -43,6 +43,12 @@ A good answer lists all five rules (including the 90% usage rule and Vietnamese 
 
 ## Log (newest first)
 
+### 2026-11-15 (end), Claude: commit and PR #3
+
+- At the user's request: commit `fd612a7` "feat(exp6,exp7,exp8): làm theo file kịch bản 3 thí nghiệm" on `test/kich-ban-3-thi-nghiem` (all files of the entries below, added by name, including the three Vietnamese reports and `tests/kich-ban-exp7.test.js`). Pushed; PR haccoco99999/experiment-xy12#3 into `main` is open, not merged. The repo has no CI checks.
+- Tests before the commit: 135, all pass.
+- Next: the user reviews and decides on the merge. After a merge, GitHub Pages rebuilds from `main`.
+
 ### 2026-11-15 (later), Claude: re-check asked "bằng chrome mcp và claude" (waiting on the user)
 
 - Node tests: 135, all pass. Claude read the whole diff of `js/experiments` and `js/models` again: no new bug found.
