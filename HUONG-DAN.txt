@@ -133,36 +133,36 @@ Nút "LÀM LẠI THÍ NGHIỆM" và ba nút trên thanh trên cùng dùng giốn
 
 Cách chơi thí nghiệm 6
 
-Học sinh đặt 4 chậu, đặt 4 vật mẫu, tưới nước, rồi xem cây con hình thành từ hạt, rễ, thân và lá. Các bước đi theo thứ tự, bước chưa mở thì khóa. Thanh tiến trình có 8 bước và chỉ hiển thị tiến độ.
+Học sinh chọn dùng 1, 2, 3 hoặc cả 4 chậu. Mỗi chậu cần được đặt lên bàn, có vật mẫu và được tưới nước. Sau đó học sinh xem cây con hình thành từ hạt, rễ, thân hoặc lá. Tài liệu đặc tả bắt buộc đủ 4 chậu. Ngày 15/11/2026, theo file kịch bản của người dùng, thí nghiệm cho làm từ 1 đến 4 chậu. Thanh tiến trình có 8 bước và chỉ hiển thị tiến độ.
 
-1. Khay bên trái có 11 thẻ: 4 vật mẫu (hạt đậu xanh, rễ khoai lang, củ khoai tây có mắt, lá thuốc bỏng), 4 chậu, đất trồng, bình tưới nước và kính phóng đại. Cuộn khay để thấy hết các thẻ.
-2. Kéo từng chậu, thả vào đúng vị trí có nhãn trên bàn. Thả sai vị trí thì chậu quay về khay kèm câu "Hãy đặt chậu vào đúng vị trí."
-3. Khi đủ 4 chậu, kéo từng vật mẫu vào chậu của nó: hạt đậu xanh vào chậu 1, rễ khoai lang vào chậu 2, khoai tây vào chậu 3, lá thuốc bỏng vào chậu 4. Thả sai chậu thì vật mẫu quay về khay kèm lời nhắc chậu đúng. Các chậu đã có sẵn đất. Kéo thẻ "Đất trồng" lên chậu chỉ hiện câu "Chậu đã có đất rồi."
-4. Khi đủ 4 vật mẫu, kéo "Bình tưới nước" đến từng chậu. Nước chảy xuống và đất chuyển sang ẩm hơn. Thả bình ra ngoài chậu thì bình quay về khay kèm câu "Hãy tưới nước vào chậu cây." Mỗi chậu tưới một lần.
-5. Kính phóng đại kéo lên một chậu đã có vật mẫu sẽ cho nhìn gần và hiện tên vật mẫu. Nhấp vào kính để cất đi.
-6. Khi cả 4 chậu đã tưới, nút "▶ BẮT ĐẦU QUAN SÁT" mở. Bấm nút này: 4 chậu phát triển cùng lúc qua NGÀY 0, 2, 4, 7, 14, thẻ "THỜI GIAN" ghi ngày đang chạy. Ngày 2 hiện "Hạt bắt đầu nảy mầm." Nhấp vào một chậu để phóng to chậu đó và xem tên hình thành cây con. Nút "← QUAY LẠI QUAN SÁT 4 CHẬU" đưa màn hình về như cũ.
-7. Ngày 14 màn hình dừng: 4 cây con đã hình thành, hiện 4 câu "Cây con được hình thành từ ...". Khay đổi thành 4 thẻ HẠT, RỄ, THÂN, LÁ. Kéo mỗi thẻ vào đúng cây: hạt vào cây đậu xanh, rễ vào cây khoai lang, thân vào cây khoai tây, lá vào cây thuốc bỏng. Đúng thì thẻ được giữ lại và hiện "Chính xác!" Sai thì thẻ quay về kèm "Chưa đúng. Hãy quan sát lại thí nghiệm."
-8. Phân loại đủ 4 thẻ thì hiện nút "TIẾP TỤC TUA NHANH". Bấm nút này: các cây lớn dần rồi thành cây trưởng thành.
-9. Cuối cùng bảng bên phải hiện "KẾT QUẢ THÍ NGHIỆM" với 4 kết quả và một câu tóm tắt, cùng bảng so sánh, sơ đồ và kết luận. Thanh tiến trình đủ 8 bước. Trên bàn, mỗi chậu có một dòng ghi nguồn gốc cây con.
+1. Khay bên trái có 10 thẻ: 4 vật mẫu (hạt đậu xanh, rễ khoai lang, củ khoai tây có mắt, lá thuốc bỏng), 4 chậu, bình tưới nước và kính phóng đại. Cuộn khay để thấy hết các thẻ. Các chậu đã có sẵn đất.
+2. Kéo chậu muốn dùng, thả vào đúng vị trí có nhãn trên bàn. Thả sai vị trí thì chậu quay về khay kèm câu "Hãy đặt chậu vào đúng vị trí."
+3. Kéo vật mẫu vào chậu của nó: hạt đậu xanh vào chậu 1, rễ khoai lang vào chậu 2, khoai tây vào chậu 3, lá thuốc bỏng vào chậu 4. Thả sai chậu thì vật mẫu quay về khay kèm lời nhắc chậu đúng. Nếu chậu của vật mẫu đó chưa có trên bàn, trang nhắc "Hãy đặt chậu của vật mẫu này lên bàn trước."
+4. Kéo "Bình tưới nước" đến chậu đã có vật mẫu. Nước chảy xuống, đất ẩm hơn và hiện câu "Đã cung cấp nước cho Chậu" kèm số chậu. Thả bình ra ngoài chậu, hoặc lên chậu chưa có vật mẫu, thì bình quay về khay kèm câu "Hãy tưới nước cho chậu có cây." Mỗi chậu tưới một lần.
+5. Kính phóng đại kéo lên một chậu đã có vật mẫu sẽ cho nhìn gần và hiện tên vật mẫu. Nhấp vào kính để cất đi. Kính chỉ để nhìn, không làm thay đổi tiến trình.
+6. Khi có ít nhất 1 chậu đã có vật mẫu và đã tưới, nút "▶ BẮT ĐẦU QUAN SÁT" mở. Trước khi bấm, em vẫn đặt thêm chậu được. Bấm nút này: các chậu đã chuẩn bị xong phát triển cùng lúc qua NGÀY 0, 2, 4, 7, 14, thẻ "THỜI GIAN" ghi ngày đang chạy. Chậu chưa chuẩn bị xong thì đứng yên. Sau khi bấm, bàn bị khóa. Muốn dùng thêm chậu thì bấm LÀM LẠI THÍ NGHIỆM. Ngày 2 hiện "Hạt bắt đầu nảy mầm." Nhấp vào một chậu đang phát triển để phóng to chậu đó. Nút quay lại đưa màn hình về như cũ.
+7. Ngày 14 màn hình dừng: cây con đã hình thành ở các chậu đã dùng, mỗi chậu hiện một câu "Cây con được hình thành từ ...". Khay đổi thành thẻ HẠT, RỄ, THÂN, LÁ, chỉ gồm thẻ của những chậu đã dùng. Kéo mỗi thẻ vào đúng cây: hạt vào cây đậu xanh, rễ vào cây khoai lang, thân vào cây khoai tây, lá vào cây thuốc bỏng. Đúng thì thẻ được giữ lại và hiện "Chính xác!" Sai thì thẻ quay về kèm "Chưa đúng. Hãy quan sát lại thí nghiệm."
+8. Phân loại đủ các thẻ thì hiện nút "TIẾP TỤC TUA NHANH". Bấm nút này: các cây lớn dần rồi thành cây trưởng thành.
+9. Cuối cùng bảng bên phải hiện "KẾT QUẢ THÍ NGHIỆM", bảng so sánh và sơ đồ, chỉ ghi những chậu đã dùng. Phần kết luận ghi "Cây con có thể được hình thành từ hạt, rễ, thân hoặc lá. Cây con lớn lên và phát triển thành cây trưởng thành." Thanh tiến trình đủ 8 bước. Trên bàn, mỗi chậu đã dùng có một dòng ghi nguồn gốc cây con.
 
 Nút "LÀM LẠI THÍ NGHIỆM" và ba nút trên thanh trên cùng dùng giống thí nghiệm 1.
 
 Cách chơi thí nghiệm 7
 
-Học sinh cho bướm đực và bướm cái gặp nhau, xem thụ tinh, cho bướm cái đẻ trứng, rồi xem trứng nở thành sâu non, sâu hóa nhộng và nhộng thành bướm mới. Các bước đi theo thứ tự, bước chưa mở thì khóa. Thanh tiến trình có 8 bước và chỉ hiển thị tiến độ.
+Học sinh cho bướm đực và bướm cái gặp nhau, xem thụ tinh, cho bướm cái đẻ trứng, rồi xem trứng nở thành sâu non, sâu hóa nhộng và nhộng thành bướm mới. Các bước đi theo thứ tự, bước chưa mở thì khóa. Thanh tiến trình có 8 bước và chỉ hiển thị tiến độ. Ngày 15/11/2026, theo file kịch bản của người dùng, kính lúp chỉ còn để nhìn và không bắt buộc. Nhấp 4 chấm sáng trong nhộng cũng không bắt buộc. Bướm mới bay đến bông hoa hút mật.
 
 1. Khay bên trái có 5 thẻ: bướm đực, bướm cái, kính lúp, lá cây và thước đo. Bảng bên phải ghi việc cần làm và giai đoạn hiện tại. Từ khi bướm cái đẻ trứng, bảng có thêm thẻ "THỜI GIAN" với các mốc NGÀY 0, 3, 7, 14, 18, 28.
-2. Kéo bướm đực và bướm cái vào khu vườn. Thả ra ngoài khu vườn thì bướm quay về khay kèm câu nhắc. Khi đủ hai con, chúng bay lại gần nhau và đậu trên cùng một cành.
+2. Kéo bướm đực và bướm cái vào khu vườn. Thả ra ngoài khu vườn thì bướm quay về khay kèm câu "Hãy đặt bướm vào khu vực quan sát." Khi đủ hai con, chúng bay lại gần nhau và đậu trên cùng một cành.
 3. Nhấn giữ bướm đực trên cành rồi kéo đến gần bướm cái. Kéo quá xa thì bướm đực bay về chỗ cũ kèm câu "Hãy đưa bướm đực đến gần bướm cái." Đủ gần thì hai bướm giao phối và hiện nhãn "GIAO PHỐI".
 4. Màn hình thụ tinh hiện ra: tinh trùng bơi đến trứng rồi hai bên kết hợp. Bấm "▶ TIẾP TỤC" để quay lại khu vườn.
 5. Kéo thẻ "BƯỚM CÁI" lên chiếc lá lớn bên phải. Bướm cái bay xuống mặt dưới lá, đẻ một cụm trứng rồi bay đi, bướm đực cũng bay đi. Thả ra ngoài lá thì hiện câu "Hãy đặt bướm cái lên lá cây."
-6. Kéo kính lúp đến cụm trứng. Trứng hiện to và có dòng "ĐÃ QUAN SÁT TRỨNG ✓". Sau đó nút "▶ CHUYỂN SANG GIAI ĐOẠN NỞ" mở. Trước đó nút này bị khóa: bấm vào thì hiện "Hãy hoàn thành bước trước để tiếp tục." Nhấp vào kính lúp để cất đi.
+6. Khi có trứng, nút "▶ CHUYỂN SANG GIAI ĐOẠN NỞ" mở ngay. Nếu muốn, kéo kính lúp đến cụm trứng trước: trứng hiện to và có dòng "ĐÃ QUAN SÁT TRỨNG ✓". Nhấp vào kính lúp để cất đi.
 7. Bấm nút nở. NGÀY 3 trứng sẫm màu. NGÀY 7 vỏ trứng nứt, sâu non bò ra và lên mặt lá.
 8. Kéo thẻ "LÁ CÂY" đến gần sâu non. Sâu bò đến ăn, mép lá bị cắn khuyết dần. Sau lần ăn đầu, sâu tự lớn lên qua 3 lần lột xác, mỗi lần để lại lớp da cũ. Thẻ "SÂU NON LỚN LÊN" tô sáng LẦN 1, 2, 3.
 9. Từ khi sâu xuất hiện đến khi sâu hóa nhộng, kéo "THƯỚC ĐO" đến gần sâu. Thước nằm dọc thân sâu và ghi chiều dài bằng mm. Số đo đổi sau mỗi lần lột xác. Nhấp vào số đo để cất thước.
 10. Khi đủ lớn, sâu thôi ăn, bò lên thân cây rồi lên cành, treo mình và hóa nhộng. Hiện câu "Sâu non đã hóa thành nhộng."
-11. Kéo kính lúp đến nhộng, rồi bấm nút "[ MẶT CẮT 3D ]". Vỏ nhộng gần như trong suốt và hiện 4 chấm sáng. Nhấp lần lượt cả 4 chấm để xem cánh, mắt kép, chân khớp và vòi hút đang hình thành. Nhấp vào chỗ khác thì hiện câu nhắc.
-12. Xem đủ 4 bộ phận thì nút "▶ TUA NHANH THỜI GIAN VŨ HÓA" mở. Bấm nút này: vỏ nhộng sẫm lại, trong dần rồi nứt ra. Bướm mới bò ra với đôi cánh nhỏ và ướt, cánh mở rộng và khô, rồi bướm bay lên cành.
+11. Bấm nút "[ MẶT CẮT 3D ]". Có thể kéo kính lúp đến nhộng trước để nhìn gần. Vỏ nhộng gần như trong suốt, hiện câu "Toàn bộ cơ thể bên trong biến đổi thành bướm." và 4 chấm sáng. Nhấp vào chấm sáng để xem cánh, mắt kép, chân khớp và vòi hút đang hình thành. Việc nhấp chấm sáng không bắt buộc.
+12. Khi mặt cắt đã hiện, nút "▶ TUA NHANH THỜI GIAN VŨ HÓA" mở. Bấm nút này: vỏ nhộng sẫm lại, trong dần rồi nứt ra. Bướm mới bò ra với đôi cánh nhỏ và ướt, cánh mở rộng và khô. Hiện câu "Bướm thoát khỏi vỏ nhộng, giương cánh khô ráo, sẵn sàng bay." Bướm bay đến bông hoa hồng trên cây và hút mật.
 13. Khay đổi thành 4 thẻ TRỨNG, SÂU NON, NHỘNG, BƯỚM TRƯỞNG THÀNH đặt lẫn thứ tự. Kéo mỗi thẻ vào VỊ TRÍ 1 đến 4 trên bàn theo đúng vòng đời. Đúng thì thẻ được giữ lại. Sai thì thẻ quay về khay kèm câu "Chưa đúng. Hãy kiểm tra lại thứ tự các giai đoạn phát triển." và dòng gợi ý.
 14. Xếp đúng cả 4 thẻ thì bảng bên phải hiện "HOÀN THÀNH THÍ NGHIỆM", sơ đồ tổng hợp sáng lên lần lượt từng bước và phần kết luận. Thanh tiến trình đủ 8 bước.
 
@@ -180,7 +180,7 @@ Học sinh đặt heo đực và heo cái, rồi theo dõi từ tinh trùng và 
 4. Giai đoạn 2: màn hình chuyển sang nền tím mềm, như nhìn vào bên trong cơ thể. Hai con heo đứng hai bên, ở giữa là một khay có vài tinh trùng và một quả trứng. Nhấn vào tinh trùng và vào trứng để xem tên. Kéo một tinh trùng vào khu vực HEO ĐỰC, kéo trứng vào khu vực HEO CÁI. Kéo sai thì quay về kèm câu nhắc. Cần đủ bốn việc: xem tinh trùng, xem trứng, kéo tinh trùng đúng, kéo trứng đúng.
 5. Giai đoạn 3: một quả trứng lớn ở giữa, 10 tinh trùng bơi xung quanh. Nhấp vào trứng thì hiện lời nhắc chọn tinh trùng. Kéo một tinh trùng đến gần trứng: tinh trùng bơi vào, trứng phát sáng, hai tế bào kết hợp và hiện "THỤ TINH ĐÃ XẢY RA". Kéo ra xa thì tinh trùng quay về kèm "Hãy đưa tinh trùng đến trứng."
 6. Giai đoạn 4: hợp tử hiện ở giữa màn hình. Kéo kính phóng đại đến hợp tử. Nhấp vào vòng kính để cất kính, rồi nhấp vào hợp tử. Nút "▶ THEO DÕI HỢP TỬ PHÁT TRIỂN" hiện ở đầu bảng.
-7. Giai đoạn 5: thanh thời gian có 4 mốc Ngày 0, Ngày 10, Ngày 20, Ngày 30. Một mốc mở khi đã xem mốc trước. Nhấp vào mốc hoặc kéo thanh trượt. Kéo quá mốc còn khóa thì thanh trượt bật lại và hiện "Hãy hoàn thành mốc trước để tiếp tục quan sát." Tế bào phân chia dần thành phôi. Đến Ngày 30, kéo kính phóng đại đến phôi.
+7. Giai đoạn 5: thanh thời gian có 4 mốc Ngày 0, Ngày 10, Ngày 20, Ngày 30. Một mốc mở khi đã xem mốc trước. Nhấp vào mốc hoặc kéo thanh trượt. Hình trên màn hình đổi theo khi kéo. Thả tay thì thanh tự đến mốc gần nhất. Kéo quá mốc còn khóa thì thanh dừng ở mốc cuối cùng đã mở và hiện "Hãy hoàn thành mốc trước để tiếp tục quan sát." Giai đoạn 6, 8 và 9 cũng có thanh trượt này. Tế bào phân chia dần thành phôi. Đến Ngày 30, kéo kính phóng đại đến phôi.
 8. Giai đoạn 6: thanh thời gian có 3 mốc Ngày 30, Ngày 70, Gần ngày sinh. Thai nằm trong một bong bóng hồng, tượng trưng cho cơ thể heo mẹ. Nhấp vào đầu, thân, chân và đuôi của thai, bảng ghi dấu ✓ cho từng bộ phận (tai cũng nhấp được nhưng không bắt buộc). Sau mốc Gần ngày sinh, dùng kính phóng đại để quan sát thai.
 9. Giai đoạn 7: camera lùi ra, màn hình mờ đi rồi hiện khu vườn với heo mẹ và heo con mới sinh. Heo con mới sinh đã mở mắt. Nhấp vào heo con. Nhấp chỗ khác thì hiện "Hãy nhấp vào heo con để quan sát." Sau đó kéo kính phóng đại đến heo con: mắt, tai, chân và thân lần lượt sáng lên.
 10. Giai đoạn 8: thanh thời gian 1 tuần, 2 tuần, 1 tháng, 2 tháng. Heo con lớn dần, đi lại vững hơn và bắt đầu tập ăn. Sau mốc 2 tháng, ba heo con (mới sinh, 1 tháng, 2 tháng) đứng cạnh nhau. Nhấp vào từng con: con đó to lên, có khung viền kích thước và câu thông tin. Cần nhấp đủ cả ba.
@@ -198,7 +198,7 @@ Cách sửa chữ
 
 Chữ của từng thí nghiệm nằm trong thư mục js/content. Với thí nghiệm 1, mở tệp js/content/exp1.vi.js. Với thí nghiệm 2, mở tệp js/content/exp2.vi.js. Với thí nghiệm 3, mở tệp js/content/exp3.vi.js. Với thí nghiệm 4, mở tệp js/content/exp4.vi.js. Với thí nghiệm 5, mở tệp js/content/exp5.vi.js. Với thí nghiệm 6, mở tệp js/content/exp6.vi.js. Với thí nghiệm 7, mở tệp js/content/exp7.vi.js. Với thí nghiệm 8, mở tệp js/content/exp8.vi.js. Mở tệp bằng Notepad, sửa chữ nằm giữa hai dấu nháy, lưu tệp ở dạng UTF-8, rồi bấm F5 trong trình duyệt để xem kết quả.
 
-Tệp có hai nhóm. Nhóm "md" gồm các câu chép nguyên văn từ tài liệu đặc tả. Nhóm "app" gồm các câu phụ mà tài liệu đặc tả không có.
+Tệp có hai nhóm. Nhóm "md" gồm các câu chép nguyên văn từ tài liệu đặc tả. Nhóm "app" gồm các câu phụ mà tài liệu đặc tả không có. Thí nghiệm 2, 6, 7 và 8 có thêm nhóm "user" gồm các câu người dùng yêu cầu đổi sau này. Câu trong nhóm "user" được dùng thay cho câu cùng tên trong nhóm "md".
 
 Chữ ở trang chủ và ở các nút chung nằm trong js/core/app.js, js/core/ui.js và index.html. Một vài nhãn nhỏ khác nằm ngay trong js/experiments/exp1.js, js/experiments/exp2.js, js/experiments/exp2-gas.js, js/experiments/exp3.js, js/experiments/exp4.js, js/experiments/exp5.js, js/experiments/exp6.js, js/experiments/exp7-larva.js (đơn vị "mm" của thước đo), js/experiments/exp8-born.js (chữ "MỐC" trước tên mốc thời gian) và js/models/tools.js.
 

@@ -1,5 +1,6 @@
 /* Experiment 7 – all Vietnamese wording.
    • `md`  = copied word for word from "THÍ NGHIỆM 1909.md" (a test checks this, so typos cannot slip in).
+   • `user` = sentences from the user's scenario file (2026-11-15, Tab 3); merged over `md` in js/experiments/exp7.js.
    • `app` = short helper messages the md does not specify (marked so you can find and edit them).
    You can edit any text here without touching the program logic. */
 (function (Lab) {
@@ -93,14 +94,22 @@
       }
     },
 
+    user: {
+      msg: { maleOff: 'Hãy đặt bướm vào khu vực quan sát.', femaleOff: 'Hãy đặt bướm vào khu vực quan sát.' },     // 2.1
+      right: {
+        pupaStill: 'Toàn bộ cơ thể bên trong biến đổi thành bướm.',                                                    // 2.8
+        adult: 'Bướm thoát khỏi vỏ nhộng, giương cánh khô ráo, sẵn sàng bay.'                                           // 2.9
+      }
+    },
+
     app: {
       titlePrefix: 'THÍ NGHIỆM 7: ',
       help: [
         'Kéo bướm đực và bướm cái từ khay bên trái, thả vào khu vườn. Sau đó kéo bướm đực đến gần bướm cái.',
         'Xem sơ đồ thụ tinh, bấm TIẾP TỤC, rồi kéo bướm cái từ khay lên lá cây để đẻ trứng.',
-        'Kéo kính lúp đến cụm trứng, bấm CHUYỂN SANG GIAI ĐOẠN NỞ. Khi sâu non xuất hiện, kéo lá cây đến gần sâu để cho ăn. Kéo thước đo đến gần sâu để đo chiều dài.',
-        'Khi nhộng xuất hiện, kéo kính lúp đến nhộng, bấm MẶT CẮT 3D và nhấp vào các chấm sáng bên trong nhộng. Sau đó bấm TUA NHANH THỜI GIAN VŨ HÓA.',
-        'Khi bướm mới xuất hiện, kéo bốn thẻ vào đúng thứ tự vòng đời. Bấm LÀM LẠI THÍ NGHIỆM bất cứ lúc nào để chơi lại từ đầu.'
+        'Bấm CHUYỂN SANG GIAI ĐOẠN NỞ (em có thể kéo kính lúp đến cụm trứng để nhìn gần trước). Khi sâu non xuất hiện, kéo lá cây đến gần sâu để cho ăn. Kéo thước đo đến gần sâu để đo chiều dài.',
+        'Khi nhộng xuất hiện, bấm MẶT CẮT 3D để nhìn vào bên trong nhộng. Em có thể nhấp vào các chấm sáng để xem từng bộ phận. Sau đó bấm TUA NHANH THỜI GIAN VŨ HÓA.',
+        'Bướm mới bay đến bông hoa hút mật. Sau đó kéo bốn thẻ vào đúng thứ tự vòng đời. Bấm LÀM LẠI THÍ NGHIỆM bất cứ lúc nào để chơi lại từ đầu.'
       ],
       busy: 'Em chờ một chút nhé.',
       zone: 'KHU VỰC QUAN SÁT',
@@ -108,7 +117,10 @@
       lensOn: 'Kính lúp đang cho em nhìn gần hơn. Nhấp vào kính để cất đi.',
       timeTitle: 'THỜI GIAN',
       stageTitle: 'GIAI ĐOẠN',
-      tapDots: 'Nhấp vào các chấm sáng để xem từng bộ phận bên trong nhộng.',
+      tapDots: 'Em có thể nhấp vào các chấm sáng để xem từng bộ phận bên trong nhộng.',
+      hatchTask: 'Bấm ▶ CHUYỂN SANG GIAI ĐOẠN NỞ. Em có thể dùng kính lúp để nhìn cụm trứng.',
+      cutTask: 'Bấm [ MẶT CẮT 3D ] để xem bên trong nhộng.',
+      nectar: 'Bướm bay đến bông hoa để hút mật.',
       keepGoing: 'Đợi một chút, sâu non đang lớn lên.',
       hintChain: 'Gợi ý',
       diagramTitle: 'SƠ ĐỒ TỔNG HỢP',

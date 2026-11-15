@@ -153,7 +153,16 @@
     d14: async function (api) { await S6.water(api); click('.panel-btn'); await adv(20); },
     zoom: async function (api) { await S6.d14(api); api.X.lapse.tapPot(1); await adv(1.6); },
     classify: async function (api) { await S6.d14(api); for (var i = 0; i < 4; i++) { api.drop('c' + i, 'pot' + i); await adv(0.8); } await adv(2); },
-    finale: async function (api) { await S6.classify(api); click('.panel-btn'); await adv(12); document.getElementById('caption').innerHTML = ''; document.getElementById('toasts').innerHTML = ''; }
+    finale: async function (api) { await S6.classify(api); click('.panel-btn'); await adv(12); document.getElementById('caption').innerHTML = ''; document.getElementById('toasts').innerHTML = ''; },
+    /* only pots 1 and 4 (1 to 4 pots since 2026-11-15); pot 2 is placed but gets no sample, so it does not grow */
+    two: async function (api) {
+      var i, P = [0, 3, 1];
+      for (i = 0; i < 3; i++) { api.drop('p' + P[i], 'place' + P[i]); await adv(1.3); }
+      await adv(1); api.drop('s0', 'pot0'); await adv(0.6); api.drop('s3', 'pot3'); await adv(4);
+      api.drop('can', 'pot0'); await adv(5.5); api.drop('can', 'pot3'); await adv(6.5);
+    },
+    two14: async function (api) { await S6.two(api); click('.panel-btn'); await adv(20); },
+    twoFinale: async function (api) { await S6.two14(api); api.drop('c0', 'pot0'); await adv(0.8); api.drop('c3', 'pot3'); await adv(2.5); click('.panel-btn'); await adv(12); document.getElementById('caption').innerHTML = ''; document.getElementById('toasts').innerHTML = ''; }
   };
 
   /* ---- helpers for the long playthroughs (Experiments 7 and 8) ---- */
@@ -230,6 +239,13 @@
       await until('the four parts', function () { return api.state().cutawayObserved; }, 20);
     },
     adult: async function (api) { await S7.cut(api); await pressPanel(api, 'emerge'); await until('the new butterfly', function () { return api.state().adult && !api.X.busy; }, 180); },
+    /* since 2026-11-15 the magnifier and the four dots are optional: the same story without them, ending at the flower */
+    quick: async function (api) {
+      await S7.laid(api); await pressPanel(api, 'hatch'); await until('the caterpillar', function () { return api.state().larvaAppeared && !api.X.busy; }, 90);
+      api.drop('leaf', 'larva'); await until('three moults and the pupa', function () { return api.state().pupaFormed && !api.X.busy && !api.X.growing; }, 240);
+      await pressPanel(api, '3D cut'); await until('the cut is shown', function () { return api.state().cutawayObserved && !api.X.busy; }, 30);
+      await pressPanel(api, 'emerge'); await until('the new butterfly at the flower', function () { return api.state().adult && !api.X.busy; }, 180);
+    },
     finale: async function (api) {
       await S7.adult(api);
       for (var i = 0; i < 4; i++) { api.drop('c' + i, 'slot' + i); await adv(1.2); }

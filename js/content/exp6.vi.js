@@ -1,5 +1,6 @@
 /* Experiment 6 – all Vietnamese wording.
    • `md`  = copied word for word from "THÍ NGHIỆM 1909.md" (a test checks this, so typos cannot slip in).
+   • `user` = sentences from the user's scenario file (2026-11-15, Tab 1: 1 to 4 pots); merged over `md` in js/experiments/exp6.js.
    • `app` = short helper messages the md does not specify (marked so you can find and edit them).
    You can edit any text here without touching the program logic. */
 (function (Lab) {
@@ -63,24 +64,35 @@
       }
     },
 
+    user: {
+      msg: { waterOff: 'Hãy tưới nước cho chậu có cây.' },
+      right: {
+        water: 'Đã cung cấp nước cho Chậu [số].',
+        made: ['Cây con được hình thành từ hạt.', 'Cây con được hình thành từ rễ khoai lang.', 'Cây con được hình thành từ thân khoai tây.', 'Cây con được hình thành từ lá cây thuốc bỏng.']
+      },
+      result: { conclusion: 'Cây con có thể được hình thành từ hạt, rễ, thân hoặc lá. Cây con lớn lên và phát triển thành cây trưởng thành.' }
+    },
+
     app: {
       titlePrefix: 'THÍ NGHIỆM 6: ',
       help: [
-        'Kéo từng chậu từ khay bên trái, thả vào đúng vị trí có nhãn trên bàn. Sau đó kéo từng vật mẫu vào đúng chậu của nó.',
-        'Kéo bình tưới đến từng chậu để tưới nước. Khi cả 4 chậu đã được tưới, bấm BẮT ĐẦU QUAN SÁT.',
+        'Em có thể dùng 1, 2, 3 hoặc cả 4 chậu. Kéo chậu từ khay bên trái, thả vào đúng vị trí có nhãn trên bàn. Sau đó kéo vật mẫu vào đúng chậu của nó.',
+        'Kéo bình tưới đến chậu đã có vật mẫu để tưới nước. Khi có ít nhất 1 chậu đã đủ chậu, vật mẫu và nước, bấm BẮT ĐẦU QUAN SÁT. Chỉ những chậu đã chuẩn bị xong mới lớn.',
         'Kéo kính phóng đại đến một chậu để nhìn gần. Nhấp vào một chậu để phóng to chậu đó, bấm QUAY LẠI QUAN SÁT 4 CHẬU để trở về.',
-        'Khi 4 cây con đã hình thành, kéo mỗi thẻ HẠT, RỄ, THÂN, LÁ vào đúng cây. Sau đó bấm TIẾP TỤC TUA NHANH để xem cây lớn lên.',
+        'Khi cây con đã hình thành, kéo mỗi thẻ (HẠT, RỄ, THÂN hoặc LÁ) vào đúng cây. Sau đó bấm TIẾP TỤC TUA NHANH để xem cây lớn lên.',
         'Bấm LÀM LẠI THÍ NGHIỆM bất cứ lúc nào để chơi lại từ đầu.'
       ],
-      potsTask: 'Hãy kéo từng chậu vào đúng vị trí trên bàn.',
-      sampleTask: 'Hãy kéo từng vật mẫu vào đúng chậu của nó.',
-      waterTask: 'Hãy dùng bình tưới để tưới nước cho cả 4 chậu.',
-      startTask: 'Bấm BẮT ĐẦU QUAN SÁT.',
+      potsTask: 'Hãy kéo chậu vào đúng vị trí trên bàn. Em có thể dùng 1, 2, 3 hoặc cả 4 chậu.',
+      sampleTask: 'Hãy kéo vật mẫu vào đúng chậu của nó.',
+      waterTask: 'Hãy dùng bình tưới để tưới nước cho chậu đã có vật mẫu.',
+      startTask: 'Bấm BẮT ĐẦU QUAN SÁT. Em cũng có thể đặt thêm chậu trước khi bấm.',
       classTask: 'Hãy kéo mỗi thẻ vào đúng cây.',
       growTask: 'Bấm TIẾP TỤC TUA NHANH để xem cây con lớn lên.',
       busy: 'Em chờ một chút nhé.',
-      potsFirst: 'Hãy đặt đủ 4 chậu lên bàn trước.',
-      samplesFirst: 'Hãy đặt đủ 4 vật mẫu vào chậu trước.',
+      potFirst: 'Hãy đặt chậu của vật mẫu này lên bàn trước.',
+      locked: 'Thí nghiệm đã bắt đầu. Muốn dùng thêm chậu, em bấm LÀM LẠI THÍ NGHIỆM.',
+      backSome: '← QUAY LẠI QUAN SÁT CÁC CHẬU',
+      classAllSome: 'Em đã phân loại đúng tất cả.',
       lensOff: 'Hãy đưa kính phóng đại đến một chậu.',
       lensEmpty: 'Chậu này chưa có vật mẫu. Hãy đặt vật mẫu vào chậu trước.',
       soilHave: 'Chậu đã có đất rồi.',

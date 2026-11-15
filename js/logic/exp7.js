@@ -1,6 +1,8 @@
 /* Experiment 7 – pure logic (no 3D, no DOM): the life cycle of a butterfly.
-   Strictly in order (md sections 36, 49 and 56): male, female → mating → fertilization → egg laying → eggs (magnifier) → hatching (day 7)
-   → larva (feed, three moults, ruler) → pupa (magnifier, 3D cut, four parts) → emergence (day 28) → sort the four stages.
+   Strictly in order (md sections 36, 49 and 56): male, female → mating → fertilization → egg laying → eggs → hatching (day 7)
+   → larva (feed, three moults, ruler) → pupa (3D cut) → emergence (day 28) → sort the four stages.
+   Since 2026-11-15 (the user's scenario file, Tab 3 section 5) the magnifier only looks: it no longer opens the hatching or the 3D cut,
+   and the four glowing parts inside the pupa can be clicked but are not needed (the md asked for both).
    Runs in the browser and in Node (tests). */
 (function (root, factory) {
   var api = factory();
@@ -71,7 +73,7 @@
   }
 
   /* ---------------- hatching (day 3 → 7) ---------------- */
-  function canHatch(s) { return s.eggObserved && !s.hatching; }
+  function canHatch(s) { return s.eggLaid && !s.hatching; }
   function startHatching(s) { if (!canHatch(s)) return false; s.hatching = true; return true; }
   function arriveDay(s, day) {
     if (DAYS.indexOf(day) < 0 || day < s.day) return null;
@@ -102,19 +104,19 @@
   }
 
   /* ---------------- the pupa: 3D cut and the four parts ---------------- */
-  function canCutaway(s) { return s.pupaObserved && !s.cutaway; }
+  function canCutaway(s) { return s.pupaFormed && !s.cutaway; }
   function openCutaway(s) { if (!canCutaway(s)) return false; s.cutaway = true; return true; }
+  /* the see-through pupa has been shown: this opens the emergence */
+  function observeCutaway(s) { if (!s.cutaway) return false; s.cutawayObserved = true; return true; }
   /* part: 'wing' | 'eye' | 'leg' | 'proboscis' or null (a click on something else) */
   function decidePart(s, part) {
-    if (!s.cutaway || s.cutawayObserved) return { ok: false, msg: null };
+    if (!s.cutaway || s.metamorphosis) return { ok: false, msg: null };
     if (PARTS.indexOf(part) < 0) return { ok: false, msg: 'partOff' };
     return { ok: true, action: 'part', part: part, again: s.parts[part] };
   }
   function applyPart(s, part) {
     s.parts[part] = true;
-    var all = PARTS.every(function (p) { return s.parts[p]; });
-    if (all && !s.cutawayObserved) { s.cutawayObserved = true; return { done: true }; }
-    return { done: false };
+    return { done: PARTS.every(function (p) { return s.parts[p]; }) };
   }
 
   /* ---------------- emergence (day 18 → 28) ---------------- */
@@ -156,12 +158,11 @@
     if (!s.mated) return 'mateTask';
     if (!s.continued) return null;                                   // the fertilization screen runs, then the button ▶ TIẾP TỤC
     if (!s.eggLaid) return 'layTask';
-    if (!s.eggObserved) return 'lensEggsTask';
+    if (!s.hatching) return 'hatchTask';
     if (!s.larvaAppeared) return null;                               // the hatching runs
     if (!s.larvaFed) return 'feedTask';
     if (!s.pupaFormed) return null;                                  // growing and moulting run
-    if (!s.pupaObserved) return 'lensPupaTask';
-    if (!s.cutawayObserved) return s.cutaway ? 'partTask' : null;
+    if (!s.cutaway) return 'cutTask';
     if (!s.adult) return null;
     return 'sortTask';
   }
@@ -174,7 +175,7 @@
     applyFertilization: applyFertilization, canContinue: canContinue, applyContinue: applyContinue,
     decideLens: decideLens, applyLens: applyLens, canHatch: canHatch, startHatching: startHatching, arriveDay: arriveDay,
     decideLeaf: decideLeaf, applyFeed: applyFeed, canGrow: canGrow, applyMolt: applyMolt, applyGrown: applyGrown, canPupate: canPupate, applyPupation: applyPupation,
-    larvaLengthMm: larvaLengthMm, decideRuler: decideRuler, canCutaway: canCutaway, openCutaway: openCutaway, decidePart: decidePart, applyPart: applyPart,
+    larvaLengthMm: larvaLengthMm, decideRuler: decideRuler, canCutaway: canCutaway, openCutaway: openCutaway, observeCutaway: observeCutaway, decidePart: decidePart, applyPart: applyPart,
     canMetamorph: canMetamorph, startMetamorphosis: startMetamorphosis, applyAdult: applyAdult,
     sorting: sorting, decideSort: decideSort, applySort: applySort, stepStates: stepStates, promptKey: promptKey, dayStates: dayStates
   };
