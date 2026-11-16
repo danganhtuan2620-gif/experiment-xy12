@@ -164,7 +164,10 @@
       setEmpty: function (b) { caseMat.color.copy(b ? pale : jade); caseMat.opacity = b ? 0.35 : 1; caseMat.depthWrite = !b; inner.visible = false; Lab.loop.wake(); },
       /* the four inner parts glow: name = 'wing' | 'eye' | 'leg' | 'proboscis' or null for none */
       highlight: function (name) {
-        Object.keys(parts).forEach(function (n) { var on = n === name; parts[n].mat.emissive.setHex(on ? 0xffe066 : 0x000000); parts[n].mat.emissiveIntensity = on ? 0.9 : 0; parts[n].meshes.forEach(function (m) { m.scale.setScalar(on ? 1.15 : 1); }); });
+        Object.keys(parts).forEach(function (n) { var on = n === name; parts[n].mat.emissive.setHex(on ? 0xffe066 : 0x000000); parts[n].mat.emissiveIntensity = on ? 0.9 : 0; parts[n].meshes.forEach(function (m) {
+          if (!m.userData.baseScale) m.userData.baseScale = m.scale.clone();          // the eye balls are unit spheres scaled to 0.05: grow from their own size, not from 1
+          m.scale.copy(m.userData.baseScale).multiplyScalar(on ? 1.15 : 1);
+        }); });
         Lab.loop.wake();
       },
       world: function (v) { g.updateMatrixWorld(true); return g.localToWorld(v.clone()); }

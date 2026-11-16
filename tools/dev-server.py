@@ -1,7 +1,8 @@
 """Tiny local web server for testing (developers only – NOT needed to use the website).
 Serves the current folder on http://127.0.0.1:4173 and tells the browser never to cache,
-so every edit shows up immediately."""
+so every edit shows up immediately. Set PORT to use another port."""
 import http.server
+import os
 import socketserver
 
 
@@ -15,5 +16,5 @@ class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
 
 
 socketserver.ThreadingTCPServer.allow_reuse_address = True
-with socketserver.ThreadingTCPServer(('127.0.0.1', 4173), NoCacheHandler) as server:
+with socketserver.ThreadingTCPServer(('127.0.0.1', int(os.environ.get('PORT', '4173'))), NoCacheHandler) as server:
     server.serve_forever()

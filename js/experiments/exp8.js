@@ -101,10 +101,14 @@
       var tl = X.tl, key = tl.key, marks = MD.marks[key], st = L.markStates(state, key), slider;
       slider = el('input', { class: 'tl-range', type: 'range', attrs: { min: 0, max: marks.length - 1, step: 0.01, 'aria-label': APP.timeTitle } });
       slider.value = Math.max(0, tl.t);
+      /* dragging the bar moves the picture; past the last open mark it stops there (2026-11-15: it used to jump back to the current mark and leave the picture half-way) */
       slider.addEventListener('input', function () {
         if (tl.busy || X.busy) { slider.value = Math.max(0, tl.t); return; }
         var v = +slider.value, open = L.maxOpenMark(state, key);
-        if (v > open + 0.02) { slider.value = Math.max(0, Math.min(open, tl.cur < 0 ? 0 : tl.cur)); if (performance.now() - tl.warned > 1500) { tl.warned = performance.now(); X.toast(MD.msg.markLocked, { type: 'warn' }); Lab.audio.play('wrong'); } return; }
+        if (v > open) {
+          if (v > open + 0.15 && performance.now() - tl.warned > 1500) { tl.warned = performance.now(); X.toast(MD.msg.markLocked, { type: 'warn' }); Lab.audio.play('wrong'); }
+          v = open; slider.value = v;
+        }
         tl.t = v; tl.cfg.apply(v);
       });
       slider.addEventListener('change', function () { if (!tl.busy && !X.busy) X.tlGo(Math.round(+slider.value)); });

@@ -5,10 +5,10 @@ const L = require('../js/logic/exp7.js');
 function placed() { const s = L.initialState(); L.applyButterfly(s, 'placeMale'); L.applyButterfly(s, 'placeFemale'); return s; }
 function fertilized() { const s = placed(); L.applyMating(s); L.applyFertilization(s); return s; }
 function laid() { const s = fertilized(); L.applyContinue(s); L.applyButterfly(s, 'layEggs'); return s; }
-function larva() { const s = laid(); L.applyLens(s, 'lensEggs'); L.startHatching(s); L.arriveDay(s, 3); L.arriveDay(s, 7); return s; }
+function larva() { const s = laid(); L.startHatching(s); L.arriveDay(s, 3); L.arriveDay(s, 7); return s; }
 function grown() { const s = larva(); L.applyFeed(s); for (let i = 0; i < 3; i++) L.applyMolt(s); L.applyGrown(s); return s; }
 function pupa() { const s = grown(); L.applyPupation(s); return s; }
-function cut() { const s = pupa(); L.applyLens(s, 'lensPupa'); L.openCutaway(s); L.PARTS.forEach((p) => L.applyPart(s, p)); return s; }
+function cut() { const s = pupa(); L.openCutaway(s); L.observeCutaway(s); return s; }
 function adult() { const s = cut(); L.startMetamorphosis(s); L.arriveDay(s, 18); L.applyAdult(s); return s; }
 
 test('the two butterflies go into the garden; a drop elsewhere sends them back with the md sentence', () => {
@@ -42,18 +42,19 @@ test('fertilization needs mating; the button ▶ TIẾP TỤC comes after it; la
   L.applyButterfly(s, 'layEggs'); assert.strictEqual(s.eggLaid, true);
 });
 
-test('the magnifier: eggs first, then the hatching button; wrong places give the md sentences', () => {
+test('the magnifier only looks (since 2026-11-15): the hatching button opens with the eggs; wrong places give the md sentences', () => {
   const s = fertilized(); L.applyContinue(s);
   assert.strictEqual(L.decideLens(s, 'eggs').msg, 'lensNothing');                  // no eggs yet
   L.applyButterfly(s, 'layEggs');
   assert.deepStrictEqual(L.decideLens(s, null), { ok: false, msg: 'lensEggsOff' });
-  assert.strictEqual(L.canHatch(s), false); assert.strictEqual(L.startHatching(s), false);
+  assert.strictEqual(L.canHatch(s), true);
   const r = L.decideLens(s, 'eggs'); assert.strictEqual(r.action, 'lensEggs'); L.applyLens(s, r.action);
+  assert.strictEqual(s.eggObserved, true);                                         // the mark ĐÃ QUAN SÁT TRỨNG ✓ still shows
   assert.strictEqual(L.canHatch(s), true); assert.strictEqual(L.startHatching(s), true); assert.strictEqual(L.canHatch(s), false);
 });
 
 test('hatching: day 3 darkens the eggs, day 7 the larva appears, never earlier', () => {
-  const s = laid(); L.applyLens(s, 'lensEggs');
+  const s = laid();
   L.arriveDay(s, 3); assert.strictEqual(s.eggsDark, false);                        // not started
   L.startHatching(s);
   L.arriveDay(s, 3); assert.strictEqual(s.eggsDark, true); assert.strictEqual(s.larvaAppeared, false);
@@ -84,19 +85,21 @@ test('the ruler follows the larva: the length grows with every moult', () => {
   assert.strictEqual(L.decideRuler(L.initialState(), true).ok, false);             // no larva yet
 });
 
-test('the pupa: magnifier on it, then the 3D cut, then all four parts, then the fast forward', () => {
+test('the pupa: the 3D cut opens without the magnifier; once it is shown the fast forward opens; the parts are optional', () => {
   const s = pupa();
-  assert.strictEqual(L.canCutaway(s), false);                                      // rule 12: the magnifier first
+  assert.strictEqual(L.canCutaway(s), true);                                       // the magnifier only looks (scenario file, section 5)
   assert.deepStrictEqual(L.decideLens(s, null), { ok: false, msg: 'lensPupaOff' });
   const r = L.decideLens(s, 'pupa'); assert.strictEqual(r.action, 'lensPupa'); L.applyLens(s, r.action);
-  assert.strictEqual(L.decidePart(s, 'wing').ok, false);                           // rule 13: the cut must be open
+  assert.strictEqual(L.decidePart(s, 'wing').ok, false);                           // the cut must be open
+  assert.strictEqual(L.observeCutaway(s), false);
   assert.strictEqual(L.openCutaway(s), true);
+  assert.strictEqual(L.canMetamorph(s), false);
+  assert.strictEqual(L.observeCutaway(s), true);
+  assert.strictEqual(L.canMetamorph(s), true);                                     // no part clicked
   assert.deepStrictEqual(L.decidePart(s, null), { ok: false, msg: 'partOff' });
-  assert.strictEqual(L.canMetamorph(s), false);
-  L.applyPart(s, 'wing'); L.applyPart(s, 'eye'); L.applyPart(s, 'leg');
-  assert.strictEqual(L.canMetamorph(s), false);
-  assert.strictEqual(L.applyPart(s, 'proboscis').done, true);
-  assert.strictEqual(L.canMetamorph(s), true); assert.strictEqual(L.startMetamorphosis(s), true);
+  assert.strictEqual(L.decidePart(s, 'wing').ok, true); L.applyPart(s, 'wing');
+  assert.strictEqual(L.startMetamorphosis(s), true);
+  assert.strictEqual(L.decidePart(s, 'eye').ok, false);                            // closed once the emergence runs
 });
 
 test('the adult appears only after the fast forward; sorting opens after that; cards go to the slot with their number', () => {
@@ -124,13 +127,13 @@ test('progress bar, prompts and days follow the story', () => {
   assert.strictEqual(L.promptKey(placed()), 'mateTask');
   assert.strictEqual(L.promptKey(fertilized()), null);
   const c = fertilized(); L.applyContinue(c); assert.strictEqual(L.promptKey(c), 'layTask');
-  assert.strictEqual(L.promptKey(laid()), 'lensEggsTask');
+  assert.strictEqual(L.promptKey(laid()), 'hatchTask');
   assert.strictEqual(L.promptKey(larva()), 'feedTask');
-  const p = pupa(); assert.strictEqual(L.promptKey(p), 'lensPupaTask');
-  L.applyLens(p, 'lensPupa'); L.openCutaway(p); assert.strictEqual(L.promptKey(p), 'partTask');
+  const p = pupa(); assert.strictEqual(L.promptKey(p), 'cutTask');
+  L.openCutaway(p); assert.strictEqual(L.promptKey(p), null);
   assert.strictEqual(L.promptKey(adult()), 'sortTask');
   const d = laid(); assert.deepStrictEqual(L.dayStates(d), ['active', 'todo', 'todo', 'todo', 'todo', 'todo']);
-  L.applyLens(d, 'lensEggs'); L.startHatching(d); L.arriveDay(d, 3);
+  L.startHatching(d); L.arriveDay(d, 3);
   assert.deepStrictEqual(L.dayStates(d), ['done', 'active', 'todo', 'todo', 'todo', 'todo']);
 });
 

@@ -1,6 +1,6 @@
-/* Experiment 7, part "nhộng": the magnifier on the pupa (md 21–22), the button "[ MẶT CẮT 3D ]" (23): the case turns see-through and four glowing dots show the
-   parts forming inside (24–26); the button "TUA NHANH THỜI GIAN VŨ HÓA" runs day 18 → 28: the case darkens, turns clear, cracks, and the new butterfly crawls out,
-   pumps up its wings, dries them and flies to the branch (27–29). Then the sorting starts (exp7-finale.js). */
+/* Experiment 7, part "nhộng": the magnifier on the pupa (md 21–22, optional since 2026-11-15), the button "[ MẶT CẮT 3D ]" (23): the case turns see-through and four glowing dots
+   show the parts forming inside (24–26; clicking them is optional since 2026-11-15); the button "TUA NHANH THỜI GIAN VŨ HÓA" runs day 18 → 28: the case darkens, turns clear, cracks, and the new butterfly crawls out,
+   pumps up its wings, dries them and flies to the flower to drink nectar (27–29, scenario file 2.10). Then the sorting starts (exp7-finale.js). */
 (Lab.exp7mods = Lab.exp7mods || []).push(function (X) {
   'use strict';
   var T = X.T, L = X.L, MD = X.MD, APP = X.APP, UI = X.UI, state = X.state, V = X.V, Mo = X.Mo;
@@ -32,7 +32,9 @@
     L.PARTS.forEach(function (p) {
       dots[p] = X.tag('', function () { return X.pupa.world(DOT[p]); }, 'hot next', 0, { html: '<span class="hotdot"></span>', onClick: function () { X.touch(); tapPart(p); } });
     });
-    X.toast(APP.tapDots, { type: 'info', ms: 6000 }); X.busy--; X.refresh();
+    L.observeCutaway(state); Lab.audio.play('ok');
+    X.toast(MD.right.pupaStill, { type: 'info', ms: 6000 }); X.wait(2.4).then(function () { if (!state.metamorphosis) X.toast(APP.tapDots, { type: 'info', ms: 6000 }); });
+    X.busy--; X.refresh();
   }
   function tapPart(p) {
     if (X.busy) return;
@@ -49,7 +51,7 @@
   }
   function onCanvasDown(e) { downAt = { x: e.clientX, y: e.clientY }; }
   function onCanvasUp(e) {                                           // a click elsewhere: the md sentence
-    if (!state.cutaway || state.cutawayObserved || X.busy || !downAt || Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) > 8) return;
+    if (!state.cutaway || state.metamorphosis || X.busy || !downAt || Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) > 8) return;
     tapPart(null);
   }
   Lab.stage.canvas.addEventListener('pointerdown', onCanvasDown); Lab.stage.canvas.addEventListener('pointerup', onCanvasUp);
@@ -78,7 +80,11 @@
     X.toast(MD.right.adult, { type: 'ok', ms: 8000 }); Lab.audio.play('step'); Lab.fx.sparkles(X.scene, g.position.clone(), 0xffe066, 14);
     await X.wait(2.2);
     L.applyAdult(state); b.mode = 'fly';
-    await X.fly(b, [g.position.clone(), g.position.clone().add(V(-1.2, 0.5, 0.8)), X.spot.perch(0.9).add(V(0, 0.2, 0.3)), X.spot.perch(0.9)], 3.2, 'perch');
-    g.rotation.set(0, Math.PI, 0); X.busy--; X.refresh(); if (X.startSort) X.startSort();
+    var fl = X.spot.flower, sip = fl.clone().add(V(0.05, 0.22, 0.1));                                                                                       // it flies to the flower and drinks nectar (scenario file 2.10)
+    X.shot({ cx: 0.2, cy: 2.6, cz: X.PZ + 0.2, w: 5.4, h: 3.4, pitch: 0.2, fov: 34 }, 1400);
+    await X.fly(b, [g.position.clone(), g.position.clone().add(V(-1.0, 0.7, 0.8)), sip.clone().add(V(0.6, 0.6, 0.5)), sip], 3.4, 'perch');
+    g.rotation.set(0, 0.4, 0); b.mode = 'tremble';
+    X.tag(APP.nectar, function () { return fl.clone().add(V(0, 0.95, 0.3)); }, 'part', 4200); X.toast(APP.nectar, { type: 'info', ms: 4600 });
+    await X.wait(3.0); b.mode = 'perch'; X.busy--; X.refresh(); if (X.startSort) X.startSort();
   }
 });
